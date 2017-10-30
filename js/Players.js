@@ -1,20 +1,9 @@
-var keysPlayersGoku = {
-  LEFT: 37,
-  RIGHT: 39,
-  UP: 38,
-  DOWN: 40
-}
-
-var keysPlayersPicolo = {
-  LEFT: 65,
-  RIGHT: 68,
-  UP: 87,
-  DOWN: 83
-}
-
-function Players(position){
+function Players(position, keys, src){
   this.position = position;
   this.speed = 30;
+  this.keys = keys ;
+  this.img = new Image();
+  this.img.src = src;
 }
 
 Players.prototype.checkBoundaries = function(e){
@@ -45,24 +34,4 @@ Players.prototype.move = function(e) {
       this.position.y += this.speed;
       break;
   }
-}
-
-Goku.prototype = Object.create(Players.prototype);
-
-function Goku (position){
-  this.keys = keysPlayersGoku;
-  this.img = new Image();
-  this.img.src = "images/goku.png";
-  Players.call(this, position);
-  console.log(this);
-}
-
-Picolo.prototype = Object.create(Players.prototype);
-
-function Picolo (position){
-  this.keys = keysPlayersPicolo;
-  this.img = new Image();
-  this.img.src = "images/picolo.png";
-  Players.call(this, position);
-  console.log(this);
 }
