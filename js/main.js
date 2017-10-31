@@ -2,14 +2,16 @@ var keysPlayersGoku = {
   LEFT: 37,
   RIGHT: 39,
   UP: 38,
-  DOWN: 40
+  DOWN: 40,
+  SHOW: 32
 }
 
 var keysPlayersPicolo = {
   LEFT: 65,
   RIGHT: 68,
   UP: 87,
-  DOWN: 83
+  DOWN: 83,
+  SHOW: 84
 }
 
 window.onload = function(){
@@ -26,18 +28,24 @@ window.onload = function(){
   world.addPlayer(goku);
   world.addPlayer(picolo);
 
-  document.addEventListener('keyup', function(e){
+  document.addEventListener('keyup', function(e) {
     if ((Object.values(keysPlayersGoku).indexOf(e.keyCode)) >= 0){
       goku.move(e);
     } else if ((Object.values(keysPlayersPicolo).indexOf(e.keyCode)) >= 0){
       picolo.move(e);
     }
+
     world.draw();
+
+    if (e.keyCode == keysPlayersGoku.SHOW || e.keyCode == keysPlayersPicolo.SHOW){
+      world.checkKeyPlayer(e);
+    }
   });
 };
 
+
 function generateBalls() {
-  balls = [];
+  var balls = [];
   for (var i = 0; i < 7; i++){
     balls.push(new Ball());
   }

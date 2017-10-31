@@ -5,7 +5,10 @@ function World(context) {
   this.img.addEventListener('load', this.draw.bind(this));
   this.players = [];
   this.balls = [];
-  this.interval = setInterval(this.checkCollisions.bind(this), 1000);
+  this.positionsCheck = [];
+  this.gridPixelSize = 100;
+  this.height = 500;
+  this.width = 500;
 }
 
 World.prototype.draw = function(){
@@ -17,6 +20,34 @@ World.prototype.draw = function(){
   for(var ball of this.balls){
     this.ctx.drawImage(ball.img, ball.position.x, ball.position.y, ball.width, ball.height);
   }
+  this.drawGrid();
+}
+
+World.prototype.drawGrid = function() {
+  this.ctx.lineWidth = 0.5;
+  this.ctx.strokeStyle = "#000000";
+  // horizontal grid lines
+  for(var i = 0; i <= this.height; i = i + this.gridPixelSize){
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, i);
+    this.ctx.lineTo(this.width, i);
+    this.ctx.closePath();
+    this.ctx.stroke();
+  }
+  // vertical grid lines
+  for(var j = 0; j <= this.width; j = j + this.gridPixelSize){
+    this.ctx.beginPath();
+    this.ctx.moveTo(j, 0);
+    this.ctx.lineTo(j, this.height);
+    this.ctx.closePath();
+    this.ctx.stroke();
+  }
+}
+
+World.prototype.drawRect = function(positionX, positionY) {
+  this.ctx.fillStyle='#f00';
+  this.ctx.fillRect(positionX, positionY, 100, 100);
+  this.positionsCheck.push({x:positionX, y:positionY});
 }
 
 World.prototype.addPlayer = function(player){
@@ -33,23 +64,25 @@ World.prototype.addBalls = function(ball){
   this.balls.push(ball);
 }
 
-World.prototype.checkCollisions = function(){
-
-  for (var i = 0; i < this.players.length; i++) {
-    for (var j =0; j < this.balls.length; j++) {
-
-      var playerX = this.players[i].position.x;
-      var playerY = this.players[i].position.y;
-      var ballX = this.balls[j].position.x;
-      var ballY = this.balls[j].position.y;
-
-      if (playerX == ballX && playerY == ballY){
-        this.players[i].score += 1;
-        if (this.players[i].keys == keysPlayersGoku){
-          this.players[i].score += 1;
-        }
-        this.players[i].score += 1;
-      }
-    }
+World.prototype.checkKeyPlayer = function(e){
+  switch (e.keyCode) {
+    case this.players[0].keys.SHOW:
+      this.drawRect(this.players[0].position.x,this.players[0].position.y);
+      this.checkCollisions(this.players[0]);
+      break;
+    case this.players[1].keys.SHOW:
+      this.drawRect(this.players[1].position.x,this.players[1].position.y);
+      this.checkCollisions(this.players[1]);
+      break;
   }
+}
+
+World.prototype.checkCollisions = function(player){
+  for(var ball of this.balls) {
+    if (ball.position.x == player.position.x && ball.position.y == player.position.y){
+      let ballIndex = this.balls.indexOf(ball);
+      this.balls.splice(ballIndex, 1);
+      player.score++;
+    }
+  };
 }

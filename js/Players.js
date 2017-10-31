@@ -1,6 +1,8 @@
 function Players(position, keys, src){
   this.position = position;
-  this.speed = 20;
+  this.width = 100;
+  this.height = 100;
+  this.speed = 100;
   this.keys = keys ;
   this.img = new Image();
   this.img.src = src;
