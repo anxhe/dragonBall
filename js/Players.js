@@ -1,9 +1,10 @@
 function Players(position, keys, src){
   this.position = position;
-  this.speed = 30;
+  this.speed = 20;
   this.keys = keys ;
   this.img = new Image();
   this.img.src = src;
+  this.score = 0;
 }
 
 Players.prototype.checkBoundaries = function(e){
