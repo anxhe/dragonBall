@@ -45,6 +45,10 @@ World.prototype.checkCollisions = function(){
 
       if (playerX == ballX && playerY == ballY){
         this.players[i].score += 1;
+        if (this.players[i].keys == keysPlayersGoku){
+          this.players[i].score += 1;
+        }
+        this.players[i].score += 1;
       }
     }
   }
