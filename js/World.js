@@ -70,10 +70,9 @@ World.prototype.addBalls = function(ball){
   this.balls.push(ball);
 }
 
-World.prototype.checkKeyPlayer = function(player){
+World.prototype.checkArea = function(player){
   this.drawRect(player.position.x, player.position.y);
   this.checkCollisions(player);
-
 }
 
 World.prototype.checkCollisions = function(player){
