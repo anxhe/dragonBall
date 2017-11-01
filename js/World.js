@@ -1,19 +1,19 @@
 function World(context) {
   this.ctx = context;
   this.img = new Image();
-  this.img.src = "images/world.png";
+  this.img.src = "https://raw.githubusercontent.com/lostdecade/simple_canvas_game/master/images/background.png";
   this.img.addEventListener('load', this.draw.bind(this));
   this.players = [];
   this.balls = [];
   this.positionsCheck = [];
   this.gridPixelSize = 100;
-  this.height = 500;
-  this.width = 500;
+  this.height = 700;
+  this.width = 700;
 }
 
 World.prototype.draw = function(){
   this.ctx.clearRect(0, 0, 500, 500);
-  this.ctx.drawImage(this.img, 0, 0);
+  this.ctx.drawImage(this.img, 0, 0, this.width, this.height);
   for(var player of this.players){
     this.ctx.drawImage(player.img, player.position.x, player.position.y, 100, 100);
   }
@@ -64,17 +64,10 @@ World.prototype.addBalls = function(ball){
   this.balls.push(ball);
 }
 
-World.prototype.checkKeyPlayer = function(e){
-  switch (e.keyCode) {
-    case this.players[0].keys.SHOW:
-      this.drawRect(this.players[0].position.x,this.players[0].position.y);
-      this.checkCollisions(this.players[0]);
-      break;
-    case this.players[1].keys.SHOW:
-      this.drawRect(this.players[1].position.x,this.players[1].position.y);
-      this.checkCollisions(this.players[1]);
-      break;
-  }
+World.prototype.checkKeyPlayer = function(player){
+  this.drawRect(player.position.x, player.position.y);
+  this.checkCollisions(player);
+
 }
 
 World.prototype.checkCollisions = function(player){

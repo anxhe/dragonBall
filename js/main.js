@@ -18,7 +18,7 @@ window.onload = function(){
   var context = document.getElementById('world').getContext('2d');
   var world = new World(context);
   var goku = new Players({x: 0, y: 0}, keysPlayersGoku, "images/goku.png");
-  var picolo = new Players({x: 400, y: 400},keysPlayersPicolo, "images/picolo.png");
+  var picolo = new Players({x: 600, y: 600},keysPlayersPicolo, "images/picolo.png");
 
   var arrayBalls = generateBalls();
   for (var i= 0; i < arrayBalls.length; i++){
@@ -37,8 +37,10 @@ window.onload = function(){
 
     world.draw();
 
-    if (e.keyCode == keysPlayersGoku.SHOW || e.keyCode == keysPlayersPicolo.SHOW){
-      world.checkKeyPlayer(e);
+    if (e.keyCode == keysPlayersGoku.SHOW){
+      world.checkKeyPlayer(goku);
+    } else if (e.keyCode == keysPlayersPicolo.SHOW){
+      world.checkKeyPlayer(picolo);
     }
   });
 };
