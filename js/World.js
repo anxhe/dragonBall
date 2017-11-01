@@ -9,9 +9,7 @@ function World(context) {
   this.gridPixelSize = 100;
   this.height = 700;
   this.width = 700;
-
   this.setTime = setTimeout(this.clearBall.bind(this), 2000);
-
 }
 
 
@@ -30,7 +28,6 @@ World.prototype.clearBall = function(){
   }
   this.draw();
 }
-
 
 World.prototype.drawGrid = function() {
   this.ctx.lineWidth = 0.5;
@@ -85,6 +82,7 @@ World.prototype.checkCollisions = function(player){
       let ballIndex = this.balls.indexOf(ball);
       this.balls.splice(ballIndex, 1);
       player.score++;
+      player.win();
     }
   };
 }

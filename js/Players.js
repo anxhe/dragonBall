@@ -7,6 +7,7 @@ function Players(position, keys, src){
   this.img = new Image();
   this.img.src = src;
   this.score = 0;
+
 }
 
 Players.prototype.checkBoundaries = function(e){
@@ -36,5 +37,11 @@ Players.prototype.move = function(e) {
     case this.keys.DOWN:
       this.position.y += this.speed;
       break;
+  }
+}
+
+Players.prototype.win = function() {
+  if(this.score >= 4){
+    console.log("You Win");
   }
 }
