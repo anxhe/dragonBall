@@ -1,11 +1,12 @@
-function Players(position, keys, src){
+function Players(name, position, keys){
+  this.name = name;
   this.position = position;
   this.width = 100;
   this.height = 100;
   this.speed = 100;
   this.keys = keys ;
   this.img = new Image();
-  this.img.src = src;
+  this.img.src = "images/" + name + ".png";
   this.score = 0;
 
 }
