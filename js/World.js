@@ -9,7 +9,11 @@ function World(context) {
   this.gridPixelSize = 100;
   this.height = 700;
   this.width = 700;
+
+  this.setTime = setTimeout(this.clearBall.bind(this), 2000);
+
 }
+
 
 World.prototype.draw = function(){
   this.ctx.clearRect(0, 0, 500, 500);
@@ -17,11 +21,16 @@ World.prototype.draw = function(){
   for(var player of this.players){
     this.ctx.drawImage(player.img, player.position.x, player.position.y, 100, 100);
   }
-  for(var ball of this.balls){
-    this.ctx.drawImage(ball.img, ball.position.x, ball.position.y, ball.width, ball.height);
-  }
   this.drawGrid();
 }
+
+World.prototype.clearBall = function(){
+  for(var ball of this.balls){
+    this.ctx.clearRect(ball.position.x, ball.position.y, ball.width, ball.height);
+  }
+  this.draw();
+}
+
 
 World.prototype.drawGrid = function() {
   this.ctx.lineWidth = 0.5;
