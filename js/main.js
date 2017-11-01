@@ -24,10 +24,13 @@ window.onload = function(){
   for (var i= 0; i < arrayBalls.length; i++){
     world.addBalls(arrayBalls[i]);
   }
+  var arrayEnemies = generateEnemies();
+  for (var i= 0; i < arrayEnemies.length; i++){
+    world.addEnemies(arrayEnemies[i]);
+  }
+
   world.addPlayer(goku);
   world.addPlayer(picolo);
-  checkScore(goku);
-  checkScore(picolo);
 
   document.addEventListener('keyup', function(e) {
     if ((Object.values(keysPlayersGoku).indexOf(e.keyCode)) >= 0){
@@ -39,10 +42,10 @@ window.onload = function(){
 
     if (e.keyCode == keysPlayersGoku.SHOW){
       world.checkArea(goku);
-      checkScore(goku);
+      updateStatus(goku);
     } else if (e.keyCode == keysPlayersPicolo.SHOW){
       world.checkArea(picolo);
-      checkScore(picolo);
+      updateStatus(picolo);
     }
   });
 };
@@ -55,7 +58,17 @@ function generateBalls(){
   return balls;
 }
 
-function checkScore(player){
-  var score = document.getElementById("score-"+ player.name);
-  score.innerText = " " + player.score;
+function updateStatus(player){
+  var score = document.getElementById(`score-${player.name}`);
+  score.innerText = player.score;
+  var life  = document.getElementById(`life-${player.name}`);
+  life.value = player.life;
+}
+
+function generateEnemies(){
+  var enemies = [];
+  for (var i = 0; i < 10; i++){
+    enemies.push(new Enemy());
+  }
+  return enemies;
 }

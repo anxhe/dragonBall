@@ -7,15 +7,18 @@
     <script type="text/javascript" src= "js/World.js"></script>
     <script type="text/javascript" src= "js/Players.js"></script>
     <script type="text/javascript" src= "js/Balls.js"></script>
+    <script type="text/javascript" src= "js/Enemy.js"></script>
     <script type="text/javascript" src= "js/main.js"></script>
   </head>
   <body>
     <div class="score score-top-left">
-      <h2>SCORE:<span id="score-goku"></span></h2>
+      <h2>SCORE: <span id="score-goku">0</span></h2>
+      <progress id="life-goku" value="100" max="100"></progress>
     </div>
     <canvas id="world" width="700" height="700"></canvas>
     <div class="score score-bottom-right">
-      <h2>SCORE:<span id="score-picolo"></span></h2>
+      <h2>SCORE: <span id="score-picolo">0</span></h2>
+      <progress id="life-picolo" value="100" max="100"></progress>
     </div>
   </body>
 </html>

@@ -5,7 +5,7 @@ function World(context) {
   this.img.addEventListener('load', this.draw.bind(this));
   this.players = [];
   this.balls = [];
-  this.positionsCheck = [];
+  this.enemies = [];
   this.gridPixelSize = 100;
   this.height = 700;
   this.width = 700;
@@ -53,7 +53,6 @@ World.prototype.drawGrid = function() {
 World.prototype.drawRect = function(positionX, positionY) {
   this.ctx.fillStyle='#f00';
   this.ctx.fillRect(positionX, positionY, 100, 100);
-  this.positionsCheck.push({x:positionX, y:positionY});
 }
 
 World.prototype.addPlayer = function(player){
@@ -70,18 +69,31 @@ World.prototype.addBalls = function(ball){
   this.balls.push(ball);
 }
 
-World.prototype.checkArea = function(player){
-  this.drawRect(player.position.x, player.position.y);
-  this.checkCollisions(player);
+World.prototype.addEnemies = function(enemy){
+  this.enemies.push(enemy);
 }
 
-World.prototype.checkCollisions = function(player){
+World.prototype.checkArea = function(player){
+  this.drawRect(player.position.x, player.position.y);
+  this.checkBallsCollisions(player);
+  this.checkEnemiesCollisions(player);
+}
+
+World.prototype.checkBallsCollisions = function(player){
   for(var ball of this.balls) {
     if (ball.position.x == player.position.x && ball.position.y == player.position.y){
       let ballIndex = this.balls.indexOf(ball);
       this.balls.splice(ballIndex, 1);
       player.score++;
       player.win();
+    }
+  };
+}
+World.prototype.checkEnemiesCollisions = function(player){
+  for(var enemy of this.enemies) {
+    if (enemy.position.x == player.position.x && enemy.position.y == player.position.y){
+      player.life -= enemy.strong;
+      player.loose();
     }
   };
 }

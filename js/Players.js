@@ -8,7 +8,7 @@ function Players(name, position, keys){
   this.img = new Image();
   this.img.src = "images/" + name + ".png";
   this.score = 0;
-
+  this.life = 100;
 }
 
 Players.prototype.checkBoundaries = function(e){
@@ -43,6 +43,12 @@ Players.prototype.move = function(e) {
 
 Players.prototype.win = function() {
   if(this.score >= 4){
-    console.log("You Win");
+    console.log(`Player ${this.name} wins.`);
+  }
+}
+
+Players.prototype.loose = function() {
+  if (this.life == 0) {
+    console.log(`Player ${this.name} loose.`);
   }
 }
