@@ -1,16 +1,19 @@
+body {
+  margin: 0;
+}
+
 .score {
-  position: relative;
+  position: absolute;
 }
 
 .score-bottom-right {
   bottom: 70px;
-  margin-right: 30px;
-  float:right;
+  right: 30px;
 }
 
 .score-top-left {
   top: 70px;
-  margin-left: 30px;
+  left: 30px;
 }
 
 canvas {
