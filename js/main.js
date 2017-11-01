@@ -26,7 +26,8 @@ window.onload = function(){
   }
   world.addPlayer(goku);
   world.addPlayer(picolo);
-  checkScore(goku, picolo);
+  checkScore(goku);
+  checkScore(picolo);
 
   document.addEventListener('keyup', function(e) {
     if ((Object.values(keysPlayersGoku).indexOf(e.keyCode)) >= 0){
