@@ -5,7 +5,6 @@ function Ball(position){
   this.img.addEventListener('load', this.draw.bind(this));
   this.width = 30;
   this.height = 30;
-  this.maxSize = 700 - this.width - 70;
   this.position = position;
 }
 
