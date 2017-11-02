@@ -1,12 +1,13 @@
 function World() {
   this.ctx = context;
   this.img = new Image();
-  this.img.src = "https://raw.githubusercontent.com/lostdecade/simple_canvas_game/master/images/background.png";
+  this.img.src = "images/world.png";
   this.img.addEventListener('load', this.draw.bind(this));
   this.goku = new Players("goku", {x: 0, y: 0}, keysPlayersGoku);
   this.piccolo = new Players("picolo", {x: 600, y: 600}, keysPlayerspiccolo);
   this.balls = [];
   this.enemies = [];
+  this.ballsFind = [];
   this.gridPixelSize = 100;
   this.height = 700;
   this.width = 700;
@@ -25,10 +26,13 @@ World.prototype.addBallsEnemies = function(positions) {
 }
 
 World.prototype.draw = function(){
-  this.ctx.clearRect(0, 0, 500, 500);
+  this.ctx.clearRect(0, 0, this.width, this.height);
   this.ctx.drawImage(this.img, 0, 0, this.width, this.height);
   this.goku.draw();
   this.piccolo.draw();
+  for(ball of this.ballsFind){
+    ball.draw(ball.position)
+  }
   this.drawGrid();
 }
 
@@ -75,8 +79,10 @@ World.prototype.checkArea = function(player){
 World.prototype.checkBallsCollisions = function(player){
   for(var ball of this.balls) {
     if (ball.position.x == player.position.x && ball.position.y == player.position.y){
-      let ballIndex = this.balls.indexOf(ball);
-      this.balls.splice(ballIndex, 1);
+      let index = this.balls.indexOf(ball);
+      ball.draw(ball.position);
+      this.ballsFind.push(ball)
+      this.balls.splice(index, 1);
       player.score++;
       player.win();
     }
@@ -85,6 +91,7 @@ World.prototype.checkBallsCollisions = function(player){
 World.prototype.checkEnemiesCollisions = function(player){
   for(var enemy of this.enemies) {
     if (enemy.position.x == player.position.x && enemy.position.y == player.position.y){
+      enemy.draw(enemy.position)
       player.life -= enemy.strong;
       player.loose();
     }
