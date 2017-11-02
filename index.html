@@ -2,7 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Dragon Ball</title>
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src= "js/generator.js"></script>
     <script type="text/javascript" src= "js/Players.js"></script>
@@ -12,14 +17,36 @@
     <script type="text/javascript" src= "js/main.js"></script>
   </head>
   <body>
-    <div class="score score-top-left">
-      <h2>SCORE: <span id="score-goku">0</span></h2>
-      <progress id="life-goku" value="100" max="100"></progress>
-    </div>
-    <canvas id="world" width="700" height="700"></canvas>
-    <div class="score score-bottom-right">
-      <h2>SCORE: <span id="score-piccolo">0</span></h2>
-      <progress id="life-piccolo" value="100" max="100"></progress>
-    </div>
+    <section id="home" class="container">
+      <div class="row">
+        <img class="logo" src="images/logo.png"/>
+      </div>
+      <div class="row">
+        <div class="controls col-md-offset-4 col-md-4">
+          <!-- <button class="btn btn-default col-md-offset-1 col-md-5">1 PLAYER</button> -->
+          <!-- <button class="btn btn-default col-md-offset-1 col-md-5">2 PLAYERS</button> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <button id="start" class="btn btn-danger col-md-offset-1 col-md-11">
+            START
+          </button>
+
+        </div>
+      </div>
+    </section>
+    <section id="game" class="hidden">
+      <div class="score score-top-left">
+        <h2>SCORE: <span id="score-goku">0</span></h2>
+        <progress id="life-goku" value="100" max="100"></progress>
+      </div>
+      <canvas id="world" width="700" height="700"></canvas>
+      <div class="score score-bottom-right">
+        <h2>SCORE: <span id="score-piccolo">0</span></h2>
+        <progress id="life-piccolo" value="100" max="100"></progress>
+      </div>
+    </section>
+
   </body>
 </html>

@@ -13,16 +13,25 @@ var keysPlayerspiccolo = {
   DOWN: 83,
   SHOW: 84
 }
-var context;
-var positions;
 
-window.onload = function(){
+var context;
+
+window.onload = function() {
+  document.querySelector('#start').addEventListener('click', function(e){
+    $('section').toggleClass('hidden');
+    start();
+  });
+}
+
+function start(){
   context = document.getElementById('world').getContext('2d');
-  var world = new World(context);
+
+  var world = new World();
   var positions = generateRandomPositions(17);
+
   world.addBallsEnemies(positions);
 
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keyup', function(e) {
     if ((Object.values(keysPlayersGoku).indexOf(e.keyCode)) >= 0){
       world.goku.move(e);
     } else if ((Object.values(keysPlayerspiccolo).indexOf(e.keyCode)) >= 0){

@@ -1,5 +1,25 @@
-body {
+html, body {
   margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#home {
+  height: 100%;
+  width: 100%;
+  background: url('../images/background.png') bottom center;
+  padding-top: 125px;
+}
+
+.logo {
+  width: 400px;
+  margin: 0 auto;
+  display: block;
+}
+
+.controls {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .score {
