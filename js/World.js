@@ -3,7 +3,8 @@ function World(context) {
   this.img = new Image();
   this.img.src = "https://raw.githubusercontent.com/lostdecade/simple_canvas_game/master/images/background.png";
   this.img.addEventListener('load', this.draw.bind(this));
-  this.players = [];
+  this.goku = new Players("goku", {x: 0, y: 0}, keysPlayersGoku);
+  this.piccolo = new Players("picolo", {x: 600, y: 600}, keysPlayerspiccolo);
   this.balls = [];
   this.enemies = [];
   this.gridPixelSize = 100;
@@ -12,13 +13,11 @@ function World(context) {
   this.setTime = setTimeout(this.clearBall.bind(this), 2000);
 }
 
-
 World.prototype.draw = function(){
   this.ctx.clearRect(0, 0, 500, 500);
   this.ctx.drawImage(this.img, 0, 0, this.width, this.height);
-  for(var player of this.players){
-    this.ctx.drawImage(player.img, player.position.x, player.position.y, 100, 100);
-  }
+  this.goku.draw();
+  this.piccolo.draw();
   this.drawGrid();
 }
 
@@ -55,13 +54,6 @@ World.prototype.drawRect = function(positionX, positionY) {
   this.ctx.fillRect(positionX, positionY, 100, 100);
 }
 
-World.prototype.addPlayer = function(player){
-  player.img.addEventListener('load', function(){
-    this.ctx.drawImage(player.img, player.position.x, player.position.y, 100, 100);
-  }.bind(this));
-  this.players.push(player);
-}
-
 World.prototype.addBalls = function(ball){
   ball.img.addEventListener('load', function(){
     this.ctx.drawImage(ball.img, ball.position.x, ball.position.y, ball.width, ball.height);
@@ -96,4 +88,11 @@ World.prototype.checkEnemiesCollisions = function(player){
       player.loose();
     }
   };
+}
+
+World.prototype.updateStatus = function(player){
+  var score = document.getElementById(`score-${player.name}`);
+  score.innerText = player.score;
+  var life  = document.getElementById(`life-${player.name}`);
+  life.value = player.life;
 }

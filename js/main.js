@@ -6,69 +6,91 @@ var keysPlayersGoku = {
   SHOW: 32
 }
 
-var keysPlayersPicolo = {
+var keysPlayerspiccolo = {
   LEFT: 65,
   RIGHT: 68,
   UP: 87,
   DOWN: 83,
   SHOW: 84
 }
+var context;
 
 window.onload = function(){
-  var context = document.getElementById('world').getContext('2d');
+  context =document.getElementById('world').getContext('2d');
   var world = new World(context);
-  var goku = new Players("goku", {x: 0, y: 0}, keysPlayersGoku);
-  var picolo = new Players("picolo", {x: 600, y: 600}, keysPlayersPicolo);
 
-  var arrayBalls = generateBalls();
-  for (var i= 0; i < arrayBalls.length; i++){
-    world.addBalls(arrayBalls[i]);
+
+  var positions = generateRandomPositions(17);
+
+  var generateEnemiesBalls = function(){
+    var arrayBalls = [];
+    var arrayEnemies = [];
+    for(var i = 0; i < positions.length;i++){
+      if (i < 7){
+        arrayBalls.push(generateBalls(positions[i]));
+
+      } else if(8 < positions.length){
+        arrayEnemies.push(generateEnemies(positions[i]));
+      }
+    }
+    addBallGenerate(arrayBalls);
+    addEnemiesGenerate(arrayEnemies);
   }
-  var arrayEnemies = generateEnemies();
-  for (var i= 0; i < arrayEnemies.length; i++){
-    world.addEnemies(arrayEnemies[i]);
+  generateEnemiesBalls();
+
+  function generateBalls(position){
+    var ball = new Ball(position);
+    return ball
   }
 
-  world.addPlayer(goku);
-  world.addPlayer(picolo);
+  function generateEnemies(position){
+    var enemy = new Enemy(position);
+    return enemy
+  }
 
-  document.addEventListener('keyup', function(e) {
+  function addBallGenerate(arrayBalls){
+    for (var i= 0; i < arrayBalls.length; i++){
+      world.addBalls(arrayBalls[i]);
+    }
+  }
+  function addEnemiesGenerate(arrayEnemies){
+    for (var i= 0; i < arrayEnemies.length; i++){
+      world.addEnemies(arrayEnemies[i]);
+    }
+  }
+
+
+  document.addEventListener('keydown', function(e) {
     if ((Object.values(keysPlayersGoku).indexOf(e.keyCode)) >= 0){
-      goku.move(e);
-    } else if ((Object.values(keysPlayersPicolo).indexOf(e.keyCode)) >= 0){
-      picolo.move(e);
+      world.goku.move(e);
+    } else if ((Object.values(keysPlayerspiccolo).indexOf(e.keyCode)) >= 0){
+      world.piccolo.move(e);
     }
     world.draw();
 
     if (e.keyCode == keysPlayersGoku.SHOW){
-      world.checkArea(goku);
-      updateStatus(goku);
-    } else if (e.keyCode == keysPlayersPicolo.SHOW){
-      world.checkArea(picolo);
-      updateStatus(picolo);
+      world.checkArea(world.goku);
+      world.updateStatus(world.goku);
+    } else if (e.keyCode == keysPlayerspiccolo.SHOW){
+      world.checkArea(world.piccolo);
+      world.updateStatus(world.piccolo);
     }
   });
 };
 
-function generateBalls(){
-  var balls = [];
-  for (var i = 0; i < 7; i++){
-    balls.push(new Ball());
+function generateRandomPositions(quantity) {
+  var positions = []
+  while (positions.length != quantity) {
+    var positionX = Math.floor(Math.random() * 7) * 100;
+    var positionY = Math.floor(Math.random() * 7) * 100;
+    var position = positionX + ',' + positionY;
+    if (positions.indexOf(position) == -1){
+      positions.push(position);
+    }
   }
-  return balls;
-}
-
-function updateStatus(player){
-  var score = document.getElementById(`score-${player.name}`);
-  score.innerText = player.score;
-  var life  = document.getElementById(`life-${player.name}`);
-  life.value = player.life;
-}
-
-function generateEnemies(){
-  var enemies = [];
-  for (var i = 0; i < 10; i++){
-    enemies.push(new Enemy());
-  }
-  return enemies;
-}
+   positions = positions.map(function(p){
+     p = p.split(',');
+     return { x: parseInt(p[0]), y: parseInt(p[1]) };
+   });
+  return positions
+};

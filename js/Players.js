@@ -11,6 +11,11 @@ function Players(name, position, keys){
   this.life = 100;
 }
 
+Players.prototype.draw = function(){
+  context.drawImage(this.img, this.position.x, this.position.y, 100, 100);
+
+}
+
 Players.prototype.checkBoundaries = function(e){
   switch (e.keyCode) {
     case this.keys.LEFT:
