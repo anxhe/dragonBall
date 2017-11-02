@@ -1,4 +1,4 @@
-function World(context) {
+function World() {
   this.ctx = context;
   this.img = new Image();
   this.img.src = "https://raw.githubusercontent.com/lostdecade/simple_canvas_game/master/images/background.png";
@@ -11,6 +11,17 @@ function World(context) {
   this.height = 700;
   this.width = 700;
   this.setTime = setTimeout(this.clearBall.bind(this), 2000);
+}
+
+World.prototype.addBallsEnemies = function(positions) {
+  for(var i = 0; i < positions.length;i++){
+    if (i < 7){
+      this.balls.push(new Ball(positions[i]));
+
+    } else if(8 < positions.length){
+      this.enemies.push(new Enemy(positions[i]));
+    }
+  }
 }
 
 World.prototype.draw = function(){
@@ -54,16 +65,6 @@ World.prototype.drawRect = function(positionX, positionY) {
   this.ctx.fillRect(positionX, positionY, 100, 100);
 }
 
-World.prototype.addBalls = function(ball){
-  ball.img.addEventListener('load', function(){
-    this.ctx.drawImage(ball.img, ball.position.x, ball.position.y, ball.width, ball.height);
-  }.bind(this));
-  this.balls.push(ball);
-}
-
-World.prototype.addEnemies = function(enemy){
-  this.enemies.push(enemy);
-}
 
 World.prototype.checkArea = function(player){
   this.drawRect(player.position.x, player.position.y);

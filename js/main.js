@@ -14,51 +14,13 @@ var keysPlayerspiccolo = {
   SHOW: 84
 }
 var context;
+var positions;
 
 window.onload = function(){
-  context =document.getElementById('world').getContext('2d');
+  context = document.getElementById('world').getContext('2d');
   var world = new World(context);
-
-
   var positions = generateRandomPositions(17);
-
-  var generateEnemiesBalls = function(){
-    var arrayBalls = [];
-    var arrayEnemies = [];
-    for(var i = 0; i < positions.length;i++){
-      if (i < 7){
-        arrayBalls.push(generateBalls(positions[i]));
-
-      } else if(8 < positions.length){
-        arrayEnemies.push(generateEnemies(positions[i]));
-      }
-    }
-    addBallGenerate(arrayBalls);
-    addEnemiesGenerate(arrayEnemies);
-  }
-  generateEnemiesBalls();
-
-  function generateBalls(position){
-    var ball = new Ball(position);
-    return ball
-  }
-
-  function generateEnemies(position){
-    var enemy = new Enemy(position);
-    return enemy
-  }
-
-  function addBallGenerate(arrayBalls){
-    for (var i= 0; i < arrayBalls.length; i++){
-      world.addBalls(arrayBalls[i]);
-    }
-  }
-  function addEnemiesGenerate(arrayEnemies){
-    for (var i= 0; i < arrayEnemies.length; i++){
-      world.addEnemies(arrayEnemies[i]);
-    }
-  }
-
+  world.addBallsEnemies(positions);
 
   document.addEventListener('keydown', function(e) {
     if ((Object.values(keysPlayersGoku).indexOf(e.keyCode)) >= 0){
@@ -76,21 +38,4 @@ window.onload = function(){
       world.updateStatus(world.piccolo);
     }
   });
-};
-
-function generateRandomPositions(quantity) {
-  var positions = []
-  while (positions.length != quantity) {
-    var positionX = Math.floor(Math.random() * 7) * 100;
-    var positionY = Math.floor(Math.random() * 7) * 100;
-    var position = positionX + ',' + positionY;
-    if (positions.indexOf(position) == -1){
-      positions.push(position);
-    }
-  }
-   positions = positions.map(function(p){
-     p = p.split(',');
-     return { x: parseInt(p[0]), y: parseInt(p[1]) };
-   });
-  return positions
 };
