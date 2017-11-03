@@ -18,7 +18,7 @@ World.prototype.addBallsEnemies = function(positions) {
   for(var i = 0; i < positions.length;i++){
     if (i < 7){
       this.balls.push(new Ball(positions[i], i + 1));
-    } else if(8 < positions.length){
+    } else {
       this.enemies.push(new Enemy(positions[i]));
     }
   }

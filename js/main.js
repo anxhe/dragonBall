@@ -27,7 +27,7 @@ function start(){
   context = document.getElementById('world').getContext('2d');
 
   var world = new World();
-  var positions = generateRandomPositions(17);
+  var positions = generateRandomPositions(57);
 
   world.addBallsEnemies(positions);
 
