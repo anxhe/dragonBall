@@ -17,8 +17,7 @@ function World() {
 World.prototype.addBallsEnemies = function(positions) {
   for(var i = 0; i < positions.length;i++){
     if (i < 7){
-      this.balls.push(new Ball(positions[i]));
-
+      this.balls.push(new Ball(positions[i], i + 1));
     } else if(8 < positions.length){
       this.enemies.push(new Enemy(positions[i]));
     }
@@ -66,7 +65,7 @@ World.prototype.drawGrid = function() {
 
 World.prototype.drawRect = function(positionX, positionY) {
   this.ctx.fillStyle='#f00';
-  this.ctx.fillRect(positionX, positionY, 100, 100);
+  this.ctx.fillRect(positionX, positionY, this.gridPixelSize, this.gridPixelSize);
 }
 
 
