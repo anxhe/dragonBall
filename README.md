@@ -6,8 +6,7 @@ as there are several enemies wanting to harm you.
 
 ## How to play?
 
-Move you player around of grid , and try to find dragon balls. Click on the box you want to show. The player than
-find greater number of balls, it will be winner.
+Move your player around the grid and try to find the dragon balls. Press "Show Ball"  key to attempt to find a dragon ball. The player than finds the greater number of balls will be the winner.
 
 ### Controls
 

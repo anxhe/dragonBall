@@ -22,17 +22,16 @@
         <img class="logo" src="images/logo.png"/>
       </div>
       <div class="row">
-        <div class="controls col-md-offset-4 col-md-4">
-          <!-- <button class="btn btn-default col-md-offset-1 col-md-5">1 PLAYER</button> -->
-          <!-- <button class="btn btn-default col-md-offset-1 col-md-5">2 PLAYERS</button> -->
-        </div>
-      </div>
-      <div class="row">
         <div class="col-md-offset-4 col-md-4">
           <button id="start" class="btn btn-danger col-md-offset-1 col-md-11">
             START
           </button>
 
+        </div>
+      </div>
+      <div class="row">
+        <div class="controls col-md-offset-4 col-md-4">
+          <button class="btn btn-default col-md-offset-1 col-md-11" data-toggle="modal" data-target="#instructions">INSTRUCTION</button>
         </div>
       </div>
     </section>
@@ -47,6 +46,41 @@
         <progress id="life-piccolo" value="100" max="100"></progress>
       </div>
     </section>
-
+    <div id="instructions" class="modal fade" tabindex="-1"  role="dialog" aria-labelledby="instructions">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center">How to play?</h4>
+          </div>
+          <div class="modal-body">
+            <p>This is a multiplayer game featuring young Goku and Piccolo, the main purpose is
+            to find the seven dragon balls scattered around the world, but it won't be as easy
+            as there are several enemies wanting to harm you.</p>
+            <br>
+            <p>Move your player around the grid and try to find the dragon balls.
+            Press "Show Ball"  key to attempt to find a dragon ball. The player than
+            finds the greater number of balls will be the winner.</p>
+            <h3>Goku</h3>
+              <ul>
+                <li>Move up: ⬆️</li>
+                <li>Move dow: ⬇️</li>
+                <li>Move right: ➡️</li>
+                <li>Move left: ⬅️</li>
+                <li>Show ball: SPACE BAR</li>
+              </ul>
+              <h3>Piccolo</h3>
+              <ul>
+                <li>Move up: W </li>
+                <li>Move dow: S</li>
+                <li>Move right: D</li>
+                <li>Move left: A</li>
+                <li>Show ball: SPACE BAR</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
