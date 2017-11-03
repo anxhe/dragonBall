@@ -4,14 +4,14 @@ function World() {
   this.img.src = "images/world.png";
   this.img.addEventListener('load', this.draw.bind(this));
   this.goku = new Players("goku", {x: 0, y: 0}, keysPlayersGoku);
-  this.piccolo = new Players("picolo", {x: 600, y: 600}, keysPlayerspiccolo);
+  this.piccolo = new Players("piccolo", {x: 950, y: 650}, keysPlayerspiccolo);
   this.balls = [];
   this.enemies = [];
   this.ballsFind = [];
-  this.gridPixelSize = 100;
+  this.gridPixelSize = 50;
   this.height = 700;
-  this.width = 700;
-  this.setTime = setTimeout(this.clearBall.bind(this), 2000);
+  this.width = 1000;
+  this.setTime = setTimeout(this.clearBall.bind(this), 1000);
 }
 
 World.prototype.addBallsEnemies = function(positions) {

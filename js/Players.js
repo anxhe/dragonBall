@@ -21,11 +21,11 @@ Players.prototype.checkBoundaries = function(e){
     case this.keys.LEFT:
       return this.position.x - this.speed >= 0;
     case this.keys.RIGHT:
-      return this.position.x + this.speed <= 600;
+      return this.position.x + this.speed <= 950;
     case this.keys.UP:
       return this.position.y - this.speed >= 0;
     case this.keys.DOWN:
-      return this.position.y + this.speed <= 600;
+      return this.position.y + this.speed <= 650;
   }
 }
 

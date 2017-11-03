@@ -1,8 +1,8 @@
 function generateRandomPositions(quantity) {
   var positions = []
   while (positions.length != quantity) {
-    var positionX = Math.floor(Math.random() * 7) * 100;
-    var positionY = Math.floor(Math.random() * 7) * 100;
+    var positionX = Math.floor(Math.random() * 20) * 50;
+    var positionY = Math.floor(Math.random() * 14) * 50;
     var position = positionX + ',' + positionY;
     if (positions.indexOf(position) == -1){
       positions.push(position);
