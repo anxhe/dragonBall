@@ -63,11 +63,15 @@ Players.prototype.move = function(e) {
 Players.prototype.win = function() {
   if(this.score >= 4){
     console.log(`Player ${this.name} wins.`);
+    $('section').toggleClass('hidden');
+    start();
   }
 }
 
 Players.prototype.loose = function() {
   if (this.life == 0) {
     console.log(`Player ${this.name} loose.`);
+    $('section').toggleClass('hidden');
+    start();
   }
 }
