@@ -2,8 +2,8 @@ function Players(name, position, keys){
   this.name = name;
   this.position = position;
   this.imagePosition = { x: null, y: null };
-  this.width = 50;
-  this.height = 50;
+  this.width = 100;
+  this.height = 100;
   this.speed = 50;
   this.keys = keys ;
   this.img = new Image(32, 48);

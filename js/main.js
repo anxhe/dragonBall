@@ -31,7 +31,7 @@ function start(){
 
   world.addBallsEnemies(positions);
 
-  document.addEventListener('keyup', function(e) {
+  document.addEventListener('keydown', function(e) {
     if ((Object.values(keysPlayersGoku).indexOf(e.keyCode)) >= 0){
       world.goku.move(e);
     } else if ((Object.values(keysPlayerspiccolo).indexOf(e.keyCode)) >= 0){
