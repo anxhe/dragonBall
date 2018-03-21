@@ -11,4 +11,4 @@ function Enemy(position) {
 
 Enemy.prototype.draw = function(){
   this.ctx.drawImage(this.img, this.position.x, this.position.y, this.width, this.height);
-}
+};

@@ -4,7 +4,7 @@ var keysPlayersGoku = {
   UP: 38,
   DOWN: 40,
   SHOW: 32
-}
+};
 
 var keysPlayerspiccolo = {
   LEFT: 65,
@@ -12,7 +12,7 @@ var keysPlayerspiccolo = {
   UP: 87,
   DOWN: 83,
   SHOW: 84
-}
+};
 
 var context;
 
@@ -21,7 +21,7 @@ window.onload = function() {
     $('section').toggleClass('hidden');
     start();
   });
-}
+};
 
 function start(){
   context = document.getElementById('world').getContext('2d');

@@ -20,7 +20,7 @@ Players.prototype.draw = function(){
     this.position.x + 8, this.position.y,       // Coordenadas iniciales en el canvas
     this.img.width, this.img.height             // Medidas de la imagen en el canvas
    );
-}
+};
 
 Players.prototype.checkBoundaries = function(e){
   switch (e.keyCode) {
@@ -33,7 +33,7 @@ Players.prototype.checkBoundaries = function(e){
     case this.keys.DOWN:
       return this.position.y + this.speed <= 650;
   }
-}
+};
 
 Players.prototype.move = function(e) {
   switch (this.checkBoundaries(e) && e.keyCode) {
@@ -58,7 +58,7 @@ Players.prototype.move = function(e) {
       this.imagePosition.y = 0;
       break;
   }
-}
+};
 
 Players.prototype.win = function() {
   if(this.score >= 4){
@@ -66,7 +66,7 @@ Players.prototype.win = function() {
     $('section').toggleClass('hidden');
     start();
   }
-}
+};
 
 Players.prototype.loose = function() {
   if (this.life == 0) {
@@ -74,4 +74,4 @@ Players.prototype.loose = function() {
     $('section').toggleClass('hidden');
     start();
   }
-}
+};

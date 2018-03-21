@@ -7,7 +7,7 @@ function Ball(position, stars){
   this.imagePosition = {
     x: (this.stars - 1 ) * 34,
     y: 0
-  }
+  };
 
   this.img.addEventListener('load', function(e){
     setTimeout(this.draw.bind(this), 100);
@@ -26,4 +26,4 @@ Ball.prototype.draw = function(){
     this.position.x + 8,  this.position.y + 8,
     this.img.width,       this.img.height
   );
-}
+};

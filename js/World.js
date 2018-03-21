@@ -22,7 +22,7 @@ World.prototype.addBallsEnemies = function(positions) {
       this.enemies.push(new Enemy(positions[i]));
     }
   }
-}
+};
 
 World.prototype.draw = function(){
   this.ctx.clearRect(0, 0, this.width, this.height);
@@ -30,17 +30,17 @@ World.prototype.draw = function(){
   this.goku.draw();
   this.piccolo.draw();
   for(ball of this.ballsFind){
-    ball.draw(ball.position)
+    ball.draw(ball.position);
   }
   this.drawGrid();
-}
+};
 
 World.prototype.clearBall = function(){
   for(var ball of this.balls){
     this.ctx.clearRect(ball.position.x, ball.position.y, ball.width, ball.height);
   }
   this.draw();
-}
+};
 
 World.prototype.drawGrid = function() {
   this.ctx.lineWidth = 0.5;
@@ -61,45 +61,45 @@ World.prototype.drawGrid = function() {
     this.ctx.closePath();
     this.ctx.stroke();
   }
-}
+};
 
 World.prototype.drawRect = function(positionX, positionY) {
   this.ctx.fillStyle='#f00';
   this.ctx.fillRect(positionX, positionY, this.gridPixelSize, this.gridPixelSize);
-}
+};
 
 
 World.prototype.checkArea = function(player){
   this.drawRect(player.position.x, player.position.y);
   this.checkBallsCollisions(player);
   this.checkEnemiesCollisions(player);
-}
+};
 
 World.prototype.checkBallsCollisions = function(player){
   for(var ball of this.balls) {
     if (ball.position.x == player.position.x && ball.position.y == player.position.y){
       let index = this.balls.indexOf(ball);
       ball.draw(ball.position);
-      this.ballsFind.push(ball)
+      this.ballsFind.push(ball);
       this.balls.splice(index, 1);
       player.score++;
       player.win();
     }
   };
-}
+};
 World.prototype.checkEnemiesCollisions = function(player){
   for(var enemy of this.enemies) {
     if (enemy.position.x == player.position.x && enemy.position.y == player.position.y){
-      enemy.draw(enemy.position)
+      enemy.draw(enemy.position);
       player.life -= enemy.strong;
       player.loose();
     }
   };
-}
+};
 
 World.prototype.updateStatus = function(player){
   var score = document.getElementById(`score-${player.name}`);
   score.innerText = player.score;
   var life  = document.getElementById(`life-${player.name}`);
   life.value = player.life;
-}
+};
